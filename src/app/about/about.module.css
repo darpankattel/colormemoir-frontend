@@ -1,0 +1,139 @@
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(235, 235, 235);
+    width: 100%;
+
+}
+
+.container {
+    margin: 10px;
+    display: flex;
+    gap: 2rem;
+    margin: 60px;
+    width: 80%;
+
+}
+
+.leftItem {
+    
+}
+
+.donateButton {
+    background-color: #398378;
+    color: white;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    align-self: center;
+}
+
+.desc {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgb(248, 248, 248);
+    border: 0;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.note {
+    color: #398378;
+    font-size: 20px;
+
+}
+
+.title {
+    color: black;
+    font-size: 5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.imgcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    
+}
+
+.img {
+
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 100%;
+    
+}
+
+.text {
+    text-align: justify;
+}
+
+.devdetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.label {
+    font-size: 20px;
+}
+
+.productbox{
+    display: flex;
+    flex-direction: column;
+    
+}
+.product {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(248, 248, 248);
+    border: 0;
+    border-radius: 10px;
+    padding: 30px;
+  
+   
+}
+
+.ratings {
+    background-color: rgb(248, 248, 248);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+   
+     margin-top: 20px;
+    height: 30vh;
+    gap: 20px;
+    padding: 20px;
+   
+
+}
+
+.ratingbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(223, 223, 223);
+    border-radius: 10px;
+
+}
+.rating{
+    font-size: 30px;
+    font-weight: bold;
+
+}
+.subdesc{
+    font-size: 13px;
+    color: grey;
+   
+}
