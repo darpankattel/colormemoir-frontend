@@ -1,6 +1,7 @@
 .mainContainer {
     background-color: #ECF0F1;
 }
+
 .profileContainer {
     display: flex;
     justify-content: space-between;
@@ -11,25 +12,35 @@
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
 }
-.leftProfile {
+
+.profileInfo {
     display: flex;
     flex-direction: column;
+}
+
+
+
+.leftProfile {
+    display: flex;
     gap: 1rem;
     align-items: center;
     justify-content: center;
+
 }
+
 .imageContainer {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid #398378;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .image {
     width: 90%;
     height: 90%;
@@ -48,38 +59,53 @@
     justify-content: center;
     position: relative;
 }
+
 .profile-name {
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
 }
+
 .profile-username {
     text-align: center;
     font-style: italic;
 }
 
-
-
 .rightProfile {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
+.lastLoginContainer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
 }
-.last-login, .date-joined {
+
+.last-login,
+.date-joined {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0;
     column-gap: 1rem;
 }
+
 .lastLogInText {
     color: gray;
     align-self: self-end;
 }
+
 .lastLogInContent {
     font-size: 1.1rem;
     align-self: self-start;
 }
+
 .icon {
     display: flex;
     justify-content: center;

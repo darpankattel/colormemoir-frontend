@@ -1,17 +1,22 @@
-.container{
+.container {
     height: 50px;
-    display:flex;
+    display: flex;
+    
     align-items: center;
-    justify-content:space-between ;
+    justify-content: space-between;
+    padding: 5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-top: 2rem;
 }
 
-.social{
+.social {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.icon{
-   
+.icon {
+    height: 20px;
+    width: 20px;
     cursor: pointer;
 }
