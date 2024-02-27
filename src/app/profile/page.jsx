@@ -104,12 +104,10 @@ const Profile = () => {
           </div>
 
           <div className={styles.profileInfo}>
-            <p className={styles["profile-name"]}>
-              {user?.first_name} {user?.last_name}
+            <p className={styles["profile-name"]}>{user?.first_name} {user?.last_name}
             </p>
             <p className={styles["profile-data"]}>@{user?.username}</p>
-            //username
-            <p className={styles["profile-data"]}>@{user?.username}</p>//email
+            <p className={styles["profile-data"]}>{user?.email}</p>
           </div>
         </div>
 

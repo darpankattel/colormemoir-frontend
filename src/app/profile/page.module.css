@@ -61,13 +61,13 @@
 }
 
 .profile-name {
-    text-align: center;
+    /* text-align: center; */
     font-size: 1.5rem;
     font-weight: bold;
 }
 
 .profile-username {
-    text-align: center;
+    /* text-align: center; */
     font-style: italic;
 }
 
