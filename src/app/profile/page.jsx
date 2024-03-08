@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Table, Tag, Image as AntdImage } from "antd";
+import { Progress } from "antd";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { IoIosLogIn } from "react-icons/io";
@@ -54,9 +55,14 @@ const columns = [
     title: "Loss / Accuracy",
     dataIndex: "loss",
     key: "reference_id",
-    render: (loss, record) => <span>
-      {loss ? `${Math.round(loss * 100 * 100) / 100}%` : "--"} / {record?.accuracy ? `${Math.round(record.accuracy * 100 * 100) / 100}%` : "--"}
-    </span>,
+    render: (loss, record) => (
+      <span>
+        {loss ? `${Math.round(loss * 100 * 100) / 100}%` : "--"} /{" "}
+        {record?.accuracy
+          ? `${Math.round(record.accuracy * 100 * 100) / 100}%`
+          : "--"}
+      </span>
+    ),
   },
   {
     title: "Created Date",
@@ -94,19 +100,33 @@ const Profile = () => {
     if (profileData) {
       setUser(profileData?.user);
       setPhotoConversions(profileData?.conversions);
+      const totalImage = profileData?.conversions?.length;
       const completedImage = profileData?.conversions?.filter(
         (item) => item.status === "completed"
       ).length;
       const pendingImage = profileData?.conversions?.filter(
         (item) => item.status === "pending"
       ).length;
-      // console.log("imageCount", {
-      //   completedImage,
-      //   pendingImage,
-      // });
+      const failedImage = profileData?.conversions?.filter(
+        (item) => item.status === "failed"
+      ).length;
+
+      const percentCompletedImage = (
+        (completedImage / totalImage) *
+        100
+      ).toFixed(1);
+      const perPending = ((pendingImage / totalImage) * 100).toFixed(1);
+      const perFailed = (failedImage / totalImage) * 100;
+      // const totalImage = completedImage + pendingImage;
+      // const errorCount = totalImage-completedImage
       setImageCount({
         completedImage,
         pendingImage,
+        perPending,
+        percentCompletedImage,
+        totalImage,
+        failedImage,
+        perFailed,
       });
     }
   }, [profileData]);
@@ -135,22 +155,41 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className={styles.rightProfile}>
-          <div className={styles.discbox}>
-            <Flex vertical gap={60}>
-              <TextArea
-                showCount
-                maxLength={100}
-                onChange={onChange}
-                placeholder="Describe Your Thougths"
-                style={{
-                  height: 150,
-                  resize: "none",
-                  width: 500,
-                }}
-              />
+        <div className={styles.progresscontainer}>
+          <div className={styles.progress}>
+            <Flex gap="40" wrap="wrap">
+              <div className={styles.circle}>
+                <Progress type="circle" percent={imageCount.perPending} />
+                <p className={styles.progresstxt}>
+                  Pending Images:{imageCount?.pendingImage}{" "}
+                </p>
+              </div>
+
+              <div className={styles.circle}>
+                <Progress
+                  type="circle"
+                  percent={imageCount.perFailed}
+                  status="exception"
+                />
+                <p className={styles.progresstxt}>
+                  Failed : {imageCount?.failedImage}
+                </p>
+              </div>
+              <div className={styles.circle}>
+                <Progress
+                  type="circle"
+                  percent={imageCount?.percentCompletedImage}
+                  status="success"
+                />
+                <p className={styles.progresstxt}>
+                  Completed Images:{imageCount?.completedImage}
+                </p>
+              </div>
             </Flex>
           </div>
+        </div>
+
+        <div className={styles.rightProfile}>
           <div className={styles.lastLoginContainer}>
             <div className={styles["last-login"]}>
               <span className={styles.icon}>
@@ -176,6 +215,11 @@ const Profile = () => {
 
       <div className={styles.tableContainer}>
         <h3 className={styles.title}>Photo Conversions</h3>
+        <div className={styles.count}>
+          <p className={styles.progresstxt}>
+            Total Images:{imageCount?.totalImage}{" "}
+          </p>
+        </div>
         <Table
           columns={columns}
           dataSource={photoConversions}
