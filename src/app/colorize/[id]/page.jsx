@@ -39,6 +39,8 @@ const downloadImage = (imageUrl) => {
         <div className={styles.title}>
           <h2 className={styles.result}>Result</h2>
           <h3 className={styles.name}>{conversion?.name}</h3>
+          <p className={styles.accuracy}>{conversion?.accuracy ? `Accuracy: ${Math.round(conversion?.accuracy * 100 * 100) / 100}%` : ""}</p>
+          <p className={styles.loss}>{conversion?.loss ? `Loss: ${Math.round(conversion?.loss * 100 * 100) / 100}%` : ""}</p>
         </div>
         <div className={styles.photo}>
           <div className={`${styles.prevphoto} ${styles.commonphoto}`}>

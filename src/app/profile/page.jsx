@@ -51,6 +51,14 @@ const columns = [
       ),
   },
   {
+    title: "Loss / Accuracy",
+    dataIndex: "loss",
+    key: "reference_id",
+    render: (loss, record) => <span>
+      {loss ? `${Math.round(loss * 100 * 100) / 100}%` : "--"} / {record?.accuracy ? `${Math.round(record.accuracy * 100 * 100) / 100}%` : "--"}
+    </span>,
+  },
+  {
     title: "Created Date",
     dataIndex: "created",
     key: "reference_id",
