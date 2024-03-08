@@ -49,3 +49,22 @@
     object-fit: cover;
     padding: 3px;
 }
+
+.link {
+    text-decoration: none;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.colorizeLink {
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    background-color: #398378;
+    color: white;
+    border-radius: 20px;
+    transition: 0.4s ease;
+}
+
+.colorizeLink:hover {
+    box-shadow: 0 0 15px #398378;
+}

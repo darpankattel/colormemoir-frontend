@@ -9,6 +9,7 @@ import myaxios from "@/utils/myaxios";
 
 import { Dropdown } from "antd";
 import { useMutation } from "@tanstack/react-query";
+import { RiImageAddLine } from "react-icons/ri";
 
 import { URL } from "@/data/URL";
 
@@ -24,11 +25,11 @@ const links = [
     title: "About",
     url: "/about",
   },
-  // {
-  //   id: 3,
-  //   title: "Contact",
-  //   url: "contact",
-  // },
+  {
+    id: 3,
+    title: <Link href="/colorize" className={styles.colorizeLink}><RiImageAddLine /> Colorize</Link>,
+    url: "/colorize",
+  },
 ];
 
 const Navbar = () => {
