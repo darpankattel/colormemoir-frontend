@@ -30,6 +30,29 @@
 
 }
 
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: auto;
+   
+
+}
+
+.progresstxt {
+    margin: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+
 .imageContainer {
     width: 10rem;
     height: 10rem;
@@ -128,6 +151,12 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+.count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .title {
     margin-bottom: 1rem;

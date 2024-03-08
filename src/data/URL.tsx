@@ -1,2 +1,2 @@
-export const MAIN_URL = "http://192.168.1.65:8000"
-export const URL = MAIN_URL + "/api/"
+export const MAIN_URL = "https://8n8h2wz2-8000.inc1.devtunnels.ms";
+export const URL = MAIN_URL + "/api/";

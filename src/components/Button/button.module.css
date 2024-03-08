@@ -6,11 +6,10 @@
     width: max-content;
     font-size: 25px;
     transition: 0.4s ease;
-    background-color: #4b8b6e;
+    background-color: #398378;
     color: white;
   }
 
   .container:hover {
-    background-color: #298d4a;
-    color: white;
+    box-shadow: 0 0 15px #398378;
   }

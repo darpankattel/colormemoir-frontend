@@ -1,55 +1,48 @@
 "use client";
-import React from 'react'
+import React from "react";
 import Link from "next/link";
 import { CiUser, CiLock } from "react-icons/ci";
-import styles from '../login/page.module.css'
-const SignUpPage = () => {
+import styles from "./page.module.css";
+import { Button, message } from 'antd';
+import { useMutation } from "@tanstack/react-query";
+import myaxios from "@/utils/myaxios";
+import { URL } from "@/data/URL";
+
+function Login() {
   const [form, setForm] = React.useState({
-    "firstname" : "",
-    "lastname" : "",
-    "username" : "",
-    "email" : "",
-    "password" : "",
-    "confirmPassword" : "",
+    username: "",
+    password: "",
   });
+  const loginMutate = useMutation({
+    mutationKey: ['login'],
+    mutationFn: async () => {
+      const response = await myaxios.post(`${URL}acc/login/`, form);
+      return response.data;
+    },
+    onSuccess: (data) => {
+      console.log("data", data);
+      if (data?.data?.token) {
+        localStorage.setItem("token", data.data.token);
+        window.location.href = "/profile/";
+      }
+    },
+    onError: (error) => {
+      console.log("error", error);
+    }
+  });
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log({form});
+    if (form.username && form.password) {
+      // loginMutate.mutateAsync();
+      alert("sign req sent");
+    }
+  }
   return (
-    <>
     <div className={styles["login-container"]}>
       <div className={styles.login}>
-        <h1 className={styles.title}>Sign Up</h1>
-        <form className={styles["login-form"]}>
-          <div className={styles["inputs-container"]}>
-            <div className={styles["input-container"]}>
-              <label htmlFor="email" className={styles.label}>
-                First Name
-              </label>
-              <div className={styles.input}>
-                <CiUser />
-                <input
-                  type="text"
-                  id="firstname"
-                  onChange={(e) => setForm({ ...form, firstname: e.target.value })}
-                  value={form.firstname}
-                  placeholder="Balen"
-                />
-              </div>
-            </div>
-            <div className={styles["input-container"]}>
-              <label htmlFor="email" className={styles.label}>
-                Last Name
-              </label>
-              <div className={styles.input}>
-                <CiUser />
-                <input
-                  type="text"
-                  id="lastname"
-                  onChange={(e) => setForm({ ...form, lastname: e.target.value })}
-                  value={form.lastname}
-                  placeholder="Shah"
-                />
-              </div>
-            </div>
-          </div>
+        <h1 className={styles.title}>Login</h1>
+        <form className={styles["login-form"]} onSubmit={handleLogin}>
           <div className={styles["input-container"]}>
             <label htmlFor="username" className={styles.label}>
               Username
@@ -59,80 +52,56 @@ const SignUpPage = () => {
               <input
                 type="username"
                 id="username"
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                value={form.email}
+                onChange={(e) => setForm({ ...form, username: e.target.value })}
+                value={form.username}
                 placeholder="balenshah"
               />
             </div>
           </div>
           <div className={styles["input-container"]}>
-            <label htmlFor="email" className={styles.label}>
-              Email
+            <label htmlFor="password" className={styles.label}>
+              Password
             </label>
             <div className={styles.input}>
-              <CiUser />
+              <CiLock />
               <input
-                type="email"
-                id="email"
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                value={form.email}
-                placeholder="username@example.com"
+                type="password"
+                id="password"
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                value={form.password}
               />
             </div>
+            <Link href="/forgot-password" className={styles["forgot-password"]}>
+              Forgot Password?
+            </Link>
           </div>
-          <div className={styles["inputs-container"]}>
-            <div className={styles["input-container"]}>
-              <label htmlFor="password" className={styles.label}>
-                Password
-              </label>
-              <div className={styles.input}>
-                <CiUser />
-                <input
-                  type="text"
-                  id="password"
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  value={form.password}
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className={styles["input-container"]}>
-              <label htmlFor="confirmPassword" className={styles.label}>
-                Confirm Password
-              </label>
-              <div className={styles.input}>
-                <CiUser />
-                <input
-                  type="text"
-                  id="confirmPassword"
-                  onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                  value={form.confirmPassword}
-                  placeholder=""
-                />
-              </div>
-            </div>
-          </div>
-          {/* radio button of i accept all terms */}
-          <div className={styles["checkbox-container"]}>
-            <input
-              type="checkbox"
-              id="accept"
-              onChange={(e) => setForm({ ...form, accept: e.target.value })}
-              value={form.accept}
-            />
-            <label htmlFor="accept" className={styles.label}>
-              I accept all terms and conditions.
-            </label>
-          </div>
-          <button className={`${styles.button} ${styles["login-button"]}`}>
-            Sign Up
+          <button type="submit" className={`${styles.button} ${styles["login-button"]}`}>
+            Login
           </button>
         </form>
+        <div className={styles["social-login"]}>
+          <hr />
+          <p>or login with</p>
+          <div className={styles["social-icons"]}>
+            <Link href="/">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
+                alt="Google Icon"
+                width={20}
+                style={{ verticalAlign: "middle", marginRight: "10px" }}
+              />
+              Sign in with Google
+            </Link>
+          </div>
+        </div>
+        <div className={styles["create-account"]}>
+          <p>
+            Don't have an account? <Link href="/account/signup">Create an account</Link>
+          </p>
+        </div>
       </div>
     </div>
-  </>
   );
-};
+}
 
-export default SignUpPage;
-
+export default Login;

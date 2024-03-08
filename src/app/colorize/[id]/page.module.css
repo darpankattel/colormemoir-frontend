@@ -21,15 +21,45 @@
     align-items: center;
 }
 
-.result {
+/* .result {
     font-size: 2rem;
     color: #398378;
     font-weight: bold;
-}
+} */
 .name {
-    font-size: 1.5rem;
-    color: #398378;
+    text-transform: capitalize;
+    margin: 20px;
+    font-size: 50px;
+    color: black;
     font-weight: bold;
+}
+.progress{
+    gap: 30px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.datatext{
+
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+.statTitle{
+    font-size: 33px;
+    font-weight: normal;
+    color: gray;
+    text-transform: uppercase;
 }
 
 .prevphoto {}
@@ -41,6 +71,11 @@
     height: 500px;
 }
 
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .downloadButton {
     margin: 1rem auto;
 }

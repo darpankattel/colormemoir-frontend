@@ -11,55 +11,55 @@ import fifth from '../../../public/category/Patan-Durbar-Square.jpg'
 const Buttons = [
   {
     id: 1,
-    text: "Nepal Landscape",
+    text: "Historical Places",
   },
   {
     id: 2,
-    text: "People in General",
+    text: "Nepal Landscape",
   },
   {
     id: 3,
-    text: "Animal",
+    text: "People in General",
   },
   {
     id: 4,
-    text: "Nepali Culture & Customs",
+    text: "Animal",
   },
   {
     id: 5,
-    text: "Historical Places",
+    text: "Nepali Culture & Customs",
   },
 ];
 const demoPhoto = [
   {
     id: 1,
+    img: fifth,
+    title: "Historical Places",
+    desc: "Journey through time and explore Nepal's rich history and heritage with glimpses of ancient temples, palaces, monuments, and archaeological sites that bear testimony to its glorious past.",
+  },
+  {
+    id: 2,
     img: first,
     title: "Nepal Landscape",
     desc: "Explore the breathtaking beauty of Nepal's diverse landscapes, from the majestic Himalayas to serene lakes and lush valleys.",
   },
   {
-    id: 2,
+    id: 3,
     img: second,
     title: "People in General",
     desc: "Discover the vibrant tapestry of Nepali society through candid snapshots of people from various walks of life, capturing their daily routines, traditions, and moments of joy.",
   },
   {
-    id: 3,
+    id: 4,
     img:third,
     title: "Animal",
     desc: "Delve into the rich biodiversity of Nepal with images showcasing its diverse fauna, including native species of mammals, birds, reptiles, and more.",
   },
   {
-    id: 4,
+    id: 5,
     img:fouth,
     title: "Nepali Culture & Customs",
     desc: "Immerse yourself in the rich tapestry of Nepali culture, traditions, and customs, depicted through colorful festivals, rituals, and cultural practices that have been passed down through generations.",
-  },
-  {
-    id: 5,
-    img: fifth,
-    title: "Historical Places",
-    desc: "Journey through time and explore Nepal's rich history and heritage with glimpses of ancient temples, palaces, monuments, and archaeological sites that bear testimony to its glorious past.",
   },
 ];
 
