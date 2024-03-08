@@ -159,6 +159,7 @@ const Profile = () => {
       </div>
 
       <div className={styles.tableContainer}>
+        <h3 className={styles.title}>Photo Conversions</h3>
         <Table
           columns={columns}
           dataSource={photoConversions}
