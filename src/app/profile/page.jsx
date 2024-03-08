@@ -80,11 +80,26 @@ const Profile = () => {
   const { data: profileData, isFetching, error } = useGetProfile();
   const [user, setUser] = useState({});
   const [photoConversions, setPhotoConversions] = useState([]);
+  const [imageCount, setImageCount] = useState({}); //imageCount
 
   useEffect(() => {
     if (profileData) {
-      setUser(profileData.user);
-      setPhotoConversions(profileData.conversions);
+      setUser(profileData?.user);
+      setPhotoConversions(profileData?.conversions);
+      const completedImage = profileData?.conversions?.filter(
+        (item) => item.status === "completed"
+      ).length;
+      const pendingImage = profileData?.conversions?.filter(
+        (item) => item.status === "pending"
+      ).length;
+      // console.log("imageCount", {
+      //   completedImage,
+      //   pendingImage,
+      // });
+      setImageCount({
+        completedImage,
+        pendingImage,
+      });
     }
   }, [profileData]);
   return (
@@ -104,7 +119,8 @@ const Profile = () => {
           </div>
 
           <div className={styles.profileInfo}>
-            <p className={styles["profile-name"]}>{user?.first_name} {user?.last_name}
+            <p className={styles["profile-name"]}>
+              {user?.first_name} {user?.last_name}
             </p>
             <p className={styles["profile-data"]}>@{user?.username}</p>
             <p className={styles["profile-data"]}>{user?.email}</p>
