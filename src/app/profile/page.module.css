@@ -166,3 +166,12 @@
 .table {
     width: 100%;
 }
+
+.link {
+    color: #398378;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #194f47;
+}

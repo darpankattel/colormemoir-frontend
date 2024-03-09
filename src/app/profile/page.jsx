@@ -10,6 +10,7 @@ import { getFormattedDateTime } from "@/utils/utils";
 import { useGetProfile } from "@/hooks/useGetProfile";
 import { MAIN_URL } from "@/data/URL";
 import { Flex, Input } from "antd";
+import Link from "next/link";
 const { TextArea } = Input;
 const onChange = (e) => {
   console.log("Change:", e.target.value);
@@ -20,7 +21,7 @@ const columns = [
     title: "Id",
     dataIndex: "reference_id",
     key: "reference_id",
-    // render: (text) => <a>{text}</a>,
+    render: (id) => <Link href={`/colorize/${id}`} className={styles.link}>{id ? id : "--"}</Link>,
   },
   {
     title: "Name",

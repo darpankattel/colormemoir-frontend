@@ -101,7 +101,7 @@ const page = () => {
         </div>
         <div className={styles.photo}>
           <div className={`${styles.prevphoto} ${styles.commonphoto}`}>
-            <h3>Input Photo</h3>
+            <h3 className={styles.conversionLabel}>Input Photo</h3>
             <Image
               width={500}
               height={"auto"}
@@ -110,7 +110,7 @@ const page = () => {
             />
           </div>
           <div className={`${styles.nextphoto} ${styles.commonphoto}`}>
-            <h3>Colored Photo</h3>
+            <h3 className={styles.conversionLabel}>Colored Photo</h3>
             <Image
               width={500}
               height={"auto"}
