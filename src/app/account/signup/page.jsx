@@ -7,75 +7,88 @@ import { Button, message } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
+import { getError } from "@/utils/utils";
 
-function Login() {
+function Signup() {
   const [form, setForm] = React.useState({
-    username: "",
-    password: "",
+    "first_name": "",
+    "last_name": "",
+    "username": "",
+    "email": "",
+    "password": "",
+    "confirm_password": "",
   });
-  const loginMutate = useMutation({
-    mutationKey: ["login"],
+  const signupMutate = useMutation({
+    mutationKey: ["signup"],
     mutationFn: async () => {
-      const response = await myaxios.post(`${URL}acc/login/`, form);
+      const response = await myaxios.post(`${URL}acc/register/`, form);
       return response.data;
     },
     onSuccess: (data) => {
       console.log("data", data);
-      if (data?.data?.token) {
-        localStorage.setItem("token", data.data.token);
-        window.location.href = "/profile/";
+      if (data?.success) {
+        message.success(data?.message);
+        if (data?.data?.username) {
+          window.location.href = `/account/verify/${data?.data?.username}`;
+        }
       }
     },
     onError: (error) => {
       console.log("error", error);
+      message.error(getError(error));
     },
   });
-  const handleLogin = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
     console.log({ form });
-    if (form.username && form.password) {
-      // loginMutate.mutateAsync();
-      alert("sign req sent");
+    if (!form.first_name || !form.last_name || !form.username || !form.email || !form.password || !form.confirm_password) {
+      message.error("All fields are required");
+    }
+    else if (form.confirm_password === form.password) {
+      signupMutate.mutateAsync();
+      console.log("form", form);
+    } else {
+      message.error("Passwords do not match");
     }
   };
   return (
     <div className={styles["login-container"]}>
       <div className={styles.login}>
-        <h1 className={styles.title}>Sign Up</h1>
+        <h1 className={styles.title}>Sign up</h1>
         <p className={styles.smalltext}>It’s quick and easy.</p>
         <hr className={styles.hr} />
-        <form className={styles["login-form"]} onSubmit={handleLogin}>
+        <form className={styles["login-form"]} onSubmit={handleSignup}>
           <div className={styles["inputs-container"]}>
             <div className={styles["input-container"]}>
-              <label htmlFor="username" className={styles.label}>
+              <label htmlFor="first_name" className={styles.label}>
                 First Name
               </label>
               <div className={styles.input}>
                 <CiUser />
                 <input
-                  type="firstname"
-                  id="firstname"
+                  type="text"
+                  id="first_name"
                   onChange={(e) =>
-                    setForm({ ...form, username: e.target.value })
+                    setForm({ ...form, first_name: e.target.value })
                   }
-                  value={form.username}
+                  value={form.first_name}
                   placeholder="First Name"
                 />
               </div>
             </div>
             <div className={styles["input-container"]}>
-              <label htmlFor="username" className={styles.label}>
+              <label htmlFor="last_name" className={styles.label}>
                 Last Name
               </label>
               <div className={styles.input}>
                 <CiUser />
                 <input
-                  type="lastname"
-                  id="lastname"
+                  type="text"
+                  id="last_name"
                   onChange={(e) =>
-                    setForm({ ...form, username: e.target.value })
+                    setForm({ ...form, last_name: e.target.value })
                   }
-                  value={form.username}
+                  value={form.last_name}
                   placeholder="Last Name"
                 />
               </div>
@@ -97,7 +110,7 @@ function Login() {
             </div>
           </div>
           <div className={styles["input-container"]}>
-            <label htmlFor="username" className={styles.label}>
+            <label htmlFor="email" className={styles.label}>
               Email
             </label>
             <div className={styles.input}>
@@ -105,8 +118,8 @@ function Login() {
               <input
                 type="email"
                 id="email"
-                onChange={(e) => setForm({ ...form, username: e.target.value })}
-                value={form.username}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                value={form.email}
                 placeholder="Email"
               />
             </div>
@@ -129,18 +142,18 @@ function Login() {
               </div>
             </div>
             <div className={styles["input-container"]}>
-              <label htmlFor="password" className={styles.label}>
+              <label htmlFor="confirm_password" className={styles.label}>
                 Confirm Password
               </label>
               <div className={styles.input}>
                 <CiLock />
                 <input
                   type="password"
-                  id="password"
+                  id="confirm_password"
                   onChange={(e) =>
-                    setForm({ ...form, password: e.target.value })
+                    setForm({ ...form, confirm_password: e.target.value })
                   }
-                  value={form.password}
+                  value={form.confirm_password}
                 />
               </div>
             </div>
@@ -149,21 +162,21 @@ function Login() {
             type="submit"
             className={`${styles.button} ${styles["login-button"]}`}
           >
-            Sign Up
+            Sign up
           </button>
         </form>
         <div className={styles["social-login"]}>
           <hr />
           <p>or</p>
           <div className={styles["social-icons"]}>
-            <Link href="/">
+            <Link href="#">
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
                 alt="Google Icon"
                 width={20}
                 style={{ verticalAlign: "middle", marginRight: "10px" }}
               />
-              Sign Up with Google
+              Sign up with Google
             </Link>
           </div>
         </div>
@@ -172,4 +185,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

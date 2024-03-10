@@ -11,6 +11,8 @@ import { useGetProfile } from "@/hooks/useGetProfile";
 import { MAIN_URL } from "@/data/URL";
 import { Flex, Input } from "antd";
 import Link from "next/link";
+// import image loading-image.gif
+import loadingImage from "../../../public/loading-image.gif";
 const { TextArea } = Input;
 const onChange = (e) => {
   console.log("Change:", e.target.value);
@@ -117,7 +119,7 @@ const Profile = () => {
         100
       ).toFixed(1);
       const perPending = ((pendingImage / totalImage) * 100).toFixed(1);
-      const perFailed = (failedImage / totalImage) * 100;
+      const perFailed = ((failedImage / totalImage) * 100).toFixed(1);
       // const totalImage = completedImage + pendingImage;
       // const errorCount = totalImage-completedImage
       setImageCount({
@@ -160,9 +162,16 @@ const Profile = () => {
           <div className={styles.progress}>
             <Flex gap="40" wrap="wrap">
               <div className={styles.circle}>
-                <Progress type="circle" percent={imageCount.perPending} />
+                <Progress
+                  type="circle"
+                  percent={imageCount.perPending}
+                  // change icon
+                  format={(percent) => (
+                    <Image src={loadingImage} width={40} height={40} alt="" />
+                  )}
+                />
                 <p className={styles.progresstxt}>
-                  Pending Images:{imageCount?.pendingImage}{" "}
+                  Pending Images:{imageCount?.pendingImage}
                 </p>
               </div>
 
