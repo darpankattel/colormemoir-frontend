@@ -4,14 +4,14 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Inter", sans-serif;
-  
+  font-family: "Inter", sans-serif; 
 }
 
 a{
   text-decoration: none;
   color: inherit;
 }
+
 .container{
   
   margin: 0 auto;
@@ -19,5 +19,7 @@ a{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: white;
+  color: black;
 
 }
