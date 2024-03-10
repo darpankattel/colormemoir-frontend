@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { CiUser, CiLock } from "react-icons/ci";
 import styles from "./page.module.css";
-import { Button, message } from 'antd';
+import { Button, message } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
@@ -14,7 +14,7 @@ function Login() {
     password: "",
   });
   const loginMutate = useMutation({
-    mutationKey: ['login'],
+    mutationKey: ["login"],
     mutationFn: async () => {
       const response = await myaxios.post(`${URL}acc/login/`, form);
       return response.data;
@@ -28,21 +28,59 @@ function Login() {
     },
     onError: (error) => {
       console.log("error", error);
-    }
+    },
   });
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log({form});
+    console.log({ form });
     if (form.username && form.password) {
       // loginMutate.mutateAsync();
       alert("sign req sent");
     }
-  }
+  };
   return (
     <div className={styles["login-container"]}>
       <div className={styles.login}>
-        <h1 className={styles.title}>Login</h1>
+        <h1 className={styles.title}>Sign Up</h1>
+        <p className={styles.smalltext}>It’s quick and easy.</p>
+        <hr className={styles.hr} />
         <form className={styles["login-form"]} onSubmit={handleLogin}>
+          <div className={styles["inputs-container"]}>
+            <div className={styles["input-container"]}>
+              <label htmlFor="username" className={styles.label}>
+                First Name
+              </label>
+              <div className={styles.input}>
+                <CiUser />
+                <input
+                  type="firstname"
+                  id="firstname"
+                  onChange={(e) =>
+                    setForm({ ...form, username: e.target.value })
+                  }
+                  value={form.username}
+                  placeholder="First Name"
+                />
+              </div>
+            </div>
+            <div className={styles["input-container"]}>
+              <label htmlFor="username" className={styles.label}>
+                Last Name
+              </label>
+              <div className={styles.input}>
+                <CiUser />
+                <input
+                  type="lastname"
+                  id="lastname"
+                  onChange={(e) =>
+                    setForm({ ...form, username: e.target.value })
+                  }
+                  value={form.username}
+                  placeholder="Last Name"
+                />
+              </div>
+            </div>
+          </div>
           <div className={styles["input-container"]}>
             <label htmlFor="username" className={styles.label}>
               Username
@@ -54,34 +92,69 @@ function Login() {
                 id="username"
                 onChange={(e) => setForm({ ...form, username: e.target.value })}
                 value={form.username}
-                placeholder="balenshah"
+                placeholder="Username"
               />
             </div>
           </div>
           <div className={styles["input-container"]}>
-            <label htmlFor="password" className={styles.label}>
-              Password
+            <label htmlFor="username" className={styles.label}>
+              Email
             </label>
             <div className={styles.input}>
-              <CiLock />
+              <CiUser />
               <input
-                type="password"
-                id="password"
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
-                value={form.password}
+                type="email"
+                id="email"
+                onChange={(e) => setForm({ ...form, username: e.target.value })}
+                value={form.username}
+                placeholder="Email"
               />
             </div>
-            <Link href="/forgot-password" className={styles["forgot-password"]}>
-              Forgot Password?
-            </Link>
           </div>
-          <button type="submit" className={`${styles.button} ${styles["login-button"]}`}>
-            Login
+          <div className={styles["inputs-container"]}>
+            <div className={styles["input-container"]}>
+              <label htmlFor="password" className={styles.label}>
+                Password
+              </label>
+              <div className={styles.input}>
+                <CiLock />
+                <input
+                  type="password"
+                  id="password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                  value={form.password}
+                />
+              </div>
+            </div>
+            <div className={styles["input-container"]}>
+              <label htmlFor="password" className={styles.label}>
+                Confirm Password
+              </label>
+              <div className={styles.input}>
+                <CiLock />
+                <input
+                  type="password"
+                  id="password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                  value={form.password}
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className={`${styles.button} ${styles["login-button"]}`}
+          >
+            Sign Up
           </button>
         </form>
         <div className={styles["social-login"]}>
           <hr />
-          <p>or login with</p>
+          <p>or</p>
           <div className={styles["social-icons"]}>
             <Link href="/">
               <img
@@ -90,14 +163,9 @@ function Login() {
                 width={20}
                 style={{ verticalAlign: "middle", marginRight: "10px" }}
               />
-              Sign in with Google
+              Sign Up with Google
             </Link>
           </div>
-        </div>
-        <div className={styles["create-account"]}>
-          <p>
-            Don't have an account? <Link href="/account/signup">Create an account</Link>
-          </p>
         </div>
       </div>
     </div>
