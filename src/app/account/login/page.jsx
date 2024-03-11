@@ -1,14 +1,15 @@
 "use client";
-import React, {useEffect, useContext, useState} from "react";
+import React, {useState} from "react";
 import Link from "next/link";
 import { CiUser, CiLock } from "react-icons/ci";
 import styles from "./page.module.css";
-import { Button, message } from 'antd';
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
-import { UserContext } from '../../../context/UserContext';
 import SpinningLoader from "@/components/loader/SpinningLoader";
+import { getError } from "@/utils/utils";
+import { message } from "antd";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [form, setForm] = React.useState({
@@ -16,6 +17,7 @@ function Login() {
     password: "",
   });
   const [showLoader, setShowLoader] = useState(false);
+  const router = useRouter();
   const loginMutate = useMutation({
     mutationKey: ['login'],
     mutationFn: async () => {
@@ -28,10 +30,13 @@ function Login() {
       if (data?.data?.token) {
         localStorage.setItem("token", data.data.token);
         window.location.href = "/profile/";
+        // this is essential, do no use router here
+        // router.push("/profile/");
       }
     },
     onError: (error) => {
       setShowLoader(false);
+      message.error(getError(error));
       console.log("error", error);
     }
   });
@@ -41,6 +46,8 @@ function Login() {
     if (form.username && form.password) {
       setShowLoader(true);
       loginMutate.mutateAsync();
+    } else {
+      message.error("All fields are required");
     }
   }
   return (

@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { InboxOutlined } from "@ant-design/icons";
-import { Upload } from "antd";
+import { Upload, message } from "antd";
 import Button from "@/components/Button/Button";
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
@@ -10,6 +10,8 @@ import { URL } from "@/data/URL";
 import { useRouter } from "next/navigation";
 import { CiUser } from "react-icons/ci";
 import SpinningLoader from "@/components/loader/SpinningLoader";
+import { getError } from "@/utils/utils";
+
 
 const { Dragger } = Upload;
 
@@ -38,6 +40,7 @@ const Colorize = () => {
     },
     onError: (error) => {
       setShowLoader(false);
+      message.error(getError(error));
       console.log("error", error);
     }
   });
@@ -55,6 +58,14 @@ const Colorize = () => {
     const imgWindow = window.open(src);
     imgWindow?.document.write(image.outerHTML);
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      message.error("Please login first");
+      router.push("/account/login");
+    }
+  });
+
 
   const props = {
     multiple: false,

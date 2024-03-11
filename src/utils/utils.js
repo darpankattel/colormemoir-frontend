@@ -8,13 +8,17 @@ const getFormattedDateTime = (date) => {
 const getError = (error) => {
     if (error?.response) {
         let msg = error?.response?.data?.message;
-        if (error?.response?.data?.errors) {
-            for (const key in error?.response?.data?.errors){
-                console.log(key)
-                error?.response?.data?.errors[key]?.map((err) => {
-                    msg = msg + " " + err;
-                })
+        try {
+            if (error?.response?.data?.errors) {
+                for (const key in error?.response?.data?.errors){
+                    console.log(key)
+                    error?.response?.data?.errors[key]?.map((err) => {
+                        msg = msg + " " + err;
+                    })
+                }
             }
+        } catch (error) {
+            console.log(error);
         }
         return msg;
     } else {

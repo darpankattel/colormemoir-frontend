@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
 
@@ -13,6 +13,9 @@ import { RiImageAddLine } from "react-icons/ri";
 
 import { URL } from "@/data/URL";
 import { getError } from "@/utils/utils";
+
+import { useRouter } from "next/navigation";
+import SpinningLoader from "../loader/SpinningLoader";
 
 const links = [
   {
@@ -30,6 +33,8 @@ const links = [
 
 const Navbar = () => {
   const [userLoggedIn, setUserLoggedIn] = React.useState();
+  const router = useRouter();
+  const [showLoader, setShowLoader] = useState(false);
   const logoutMutate = useMutation({
     mutationKey: ['logout'],
     mutationFn: () => {
@@ -37,11 +42,14 @@ const Navbar = () => {
       return response.data;
     },
     onSuccess: (data) => {
+      setShowLoader(false);
       console.log("logged out", data);
       localStorage.removeItem("token");
-      window.location.href = "/account/login";
+      // window.location.href = "/account/login";
+      router.push("/account/login");
     },
     onError: (error) => {
+      setShowLoader(false);
       console.log("error", error);
       message.error(getError(error));
     }
@@ -65,6 +73,7 @@ const Navbar = () => {
       onClick: async () => {
         // ask user if they want to log out
         if (confirm("Are you sure you want to log out?")) {
+          setShowLoader(true);
           await logoutMutate.mutateAsync();
         }
   
@@ -73,9 +82,11 @@ const Navbar = () => {
   ];
   useEffect(() => {
     setUserLoggedIn(localStorage.getItem("token") ? true : false);
-  }, [localStorage.getItem("token")]);
+  });
   return (
     <div className={styles.container}>
+      { showLoader  &&
+      <SpinningLoader text="Logging Out..." /> }
       <Link className={styles.logo} href="/">
         <Image
         src={logo}

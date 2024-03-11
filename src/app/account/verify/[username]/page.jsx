@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useState} from "react";
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
@@ -11,6 +11,8 @@ import { message } from "antd";
 import styles from "./page.module.css";
 import Image from "next/image";
 import otplogo from "../../../../../public/logo/otp.png";
+import { useRouter } from "next/navigation";
+import SpinningLoader from "@/components/loader/SpinningLoader";
 
 const page = () => {
   const searchParams = useSearchParams();
@@ -19,7 +21,8 @@ const page = () => {
     otp: otp ? otp : "",
   });
   const { username } = useParams();
-
+  const router = useRouter();
+  const [showLoader, setShowLoader] = useState(false);
   const verifyMutate = useMutation({
     mutationKey: ["verify"],
     mutationFn: async () => {
@@ -29,18 +32,26 @@ const page = () => {
       return response.data;
     },
     onSuccess: (data) => {
+      setShowLoader(false);
       console.log("data", data);
       if (data?.success) {
         message.success(data?.message);
-        window.location.href = `/account/login/`;
+        // window.location.href = `/account/login/`;
+        router.push("/account/login/");
       }
     },
     onError: (error) => {
+      setShowLoader(false);
       console.log("error", error);
       message.error(getError(error));
     },
   });
   const handleVerify = (e) => {
+    if (!form.otp) {
+      message.error("OTP is required");
+      return;
+    }
+    setShowLoader(true);
     e.preventDefault();
     console.log({ form });
     console.log({ username });
@@ -48,6 +59,8 @@ const page = () => {
   };
   return (
     <div className={styles["verify-container"]}>
+      { showLoader  &&
+      <SpinningLoader text="Verifying..." /> }
       <div className={styles.verify}>
         <h2 className={styles.title}>Verify OTP</h2>
         <div className={styles.image}>

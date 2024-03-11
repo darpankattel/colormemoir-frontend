@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import Link from "next/link";
 import { CiUser, CiLock } from "react-icons/ci";
 import styles from "./page.module.css";
@@ -9,6 +9,7 @@ import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
 import { getError } from "@/utils/utils";
 import SpinningLoader from "@/components/loader/SpinningLoader";
+import { useRouter } from "next/navigation";
 
 function Signup() {
   const [form, setForm] = React.useState({
@@ -19,6 +20,8 @@ function Signup() {
     "password": "",
     "confirm_password": "",
   });
+  const router = useRouter();
+  const [showLoader, setShowLoader] = useState(false);
   const signupMutate = useMutation({
     mutationKey: ["signup"],
     mutationFn: async () => {
@@ -31,7 +34,8 @@ function Signup() {
       if (data?.success) {
         message.success(data?.message);
         if (data?.data?.username) {
-          window.location.href = `/account/verify/${data?.data?.username}`;
+          // window.location.href = `/account/verify/${data?.data?.username}`;
+          router.push(`/account/verify/${data?.data?.username}`);
         }
       }
     },
