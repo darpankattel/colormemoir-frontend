@@ -23,6 +23,7 @@ const Howmany = () => {
           <Button
             text="Create Colored Photo"
             url="/colorize"
+            className={styles.button}
           />
         </div>
       </div>

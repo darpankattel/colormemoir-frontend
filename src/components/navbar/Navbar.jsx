@@ -82,6 +82,7 @@ const Navbar = () => {
         alt="logo"
         width={"200"}
         height={"100"}
+        className={styles.colormemoir}
         />
       </Link>
       <div className={styles.links}>

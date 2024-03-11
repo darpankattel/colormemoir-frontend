@@ -22,7 +22,9 @@ const Hero = () => {
           <Image src={rate} alt="rate star" className={styles.star} />
           <h5 className={styles.ratingdetail}>2.8M+ Users | Rated 4.9 Stars</h5>
         </div>
-        <Button url="/colorize" text="Create Colored Photo" />
+        <div className={styles.button}>
+        <Button url="/colorize" text="Create Colored Photo"  />
+        </div>
       </div>
     </div>
   );

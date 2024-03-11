@@ -20,3 +20,23 @@
     width: 20px;
     cursor: pointer;
 }
+
+/* Responsive CSS */
+@media only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Change direction to column for smaller screens */
+      height: auto; /* Allow height to adjust based on content */
+      padding: 1rem; /* Adjust padding for smaller screens */
+    }
+  
+    .social {
+      margin-top: 1rem; /* Add margin to separate from the text */
+      justify-content: center; /* Center social icons horizontally */
+    }
+  
+    .icon {
+      height: 15px; /* Decrease icon size for smaller screens */
+      width: 15px; /* Decrease icon size for smaller screens */
+    }
+  }
+  

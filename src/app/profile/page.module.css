@@ -34,6 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 60px;
 
 }
 
@@ -41,8 +42,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: auto;
-   
+    
+
 
 }
 
@@ -50,7 +51,7 @@
     margin: 15px;
     font-size: 15px;
     font-weight: bold;
-    
+
 }
 
 .imageContainer {
@@ -151,7 +152,8 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-.count{
+
+.count {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,4 +176,83 @@
 
 .link:hover {
     color: #194f47;
+}
+
+
+/* Profile Part */
+@media screen and (max-width: 768px) {
+    .profileContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+    .profile-name{
+        font-size: 1rem;
+    }
+
+    .leftProfile,
+    .rightProfile {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .imageContainer {
+        width: 5rem;
+        height: 5rem;
+        margin-bottom: 1rem;
+    }
+
+    .profileInfo {
+        text-align: left;
+    }
+  .progressbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+    .lastLoginContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .last-login,
+    .date-joined {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+    .lastLogInText{
+        font-size: 1rem;
+    }
+
+    .icon {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: #398378;
+        color: white;
+    }
+}
+
+/* Table Part */
+@media screen and (max-width: 768px) {
+    .tableContainer {
+       
+        width: 90%;
+    }
+
+    .table {
+        overflow-x: auto;
+        width: 100%;
+        font-size: 0.9rem;
+    }
 }

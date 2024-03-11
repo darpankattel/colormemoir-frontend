@@ -68,3 +68,42 @@
 .colorizeLink:hover {
     box-shadow: 0 0 15px #398378;
 }
+
+/* Responsive CSS */
+@media only screen and (max-width: 768px) {
+    .container {
+      height: auto; /* Allow height to adjust based on content */
+      padding: 0 20px; /* Reduce padding for smaller screens */
+      flex-direction: column; /* Change direction to column for smaller screens */
+      justify-content: center; /* Center items vertically */
+      text-align: center; /* Center text content */
+    }
+  
+    .logo {
+      height: auto; /* Allow height to adjust based on content */
+      margin-bottom: 20px; /* Add space below the logo */
+    }
+  
+    .links { /* Change direction to column for smaller screens */
+      grid-template-rows: 3,2fr;
+      gap: 30px; /* Reduce gap between links */
+      margin-bottom: 20px;
+    }
+  .colorizeLink {
+     display: none ;
+  }
+    .login {
+      padding: 10px 20px; /* Adjust padding for smaller screens */
+      font-size: 16px; /* Decrease font size for smaller screens */
+    }
+  
+    .profile-container {
+      display: inline-block; /* Ensure the container takes the minimum space */
+    }
+  
+    .profile {
+      width: 40px; /* Decrease profile image size for smaller screens */
+      height: 40px; /* Decrease profile image size for smaller screens */
+    }
+  }
+  

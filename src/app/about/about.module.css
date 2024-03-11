@@ -137,3 +137,53 @@
     color: grey;
    
 }
+
+
+
+/* Responsive CSS */
+@media only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Change direction to column for smaller screens */
+      margin: 20px; /* Adjust margin for smaller screens */
+      width: 90%; /* Adjust width for smaller screens */
+    }
+  
+    .desc {
+      padding: 20px; /* Adjust padding for smaller screens */
+    }
+  
+    .title {
+      font-size: 3rem; /* Decrease font size for smaller screens */
+    }
+  
+    .donateButton {
+      padding: 0.8rem 1.5rem; /* Adjust padding for smaller screens */
+      font-size: 16px; /* Decrease font size for smaller screens */
+    }
+  
+    .imgcontainer {
+      flex-direction: column; /* Change direction to column for smaller screens */
+      gap: 10px; /* Adjust gap between images for smaller screens */
+    }
+  
+    .img {
+      width: 150px; /* Decrease image size for smaller screens */
+      height: 150px; /* Decrease image size for smaller screens */
+      border-radius: 50%; /* Ensure images are circular */
+    }
+  
+    .product {
+      padding: 20px; /* Adjust padding for smaller screens */
+    }
+  
+    .ratings {
+      grid-template-columns: repeat(1, 1fr); /* Change to single column layout for smaller screens */
+      height: auto; /* Allow height to adjust based on content */
+    }
+  
+    .ratingbox {
+      width: 100%; /* Ensure rating boxes take full width */
+      margin-bottom: 20px; /* Add margin between rating boxes */
+    }
+  }
+  
