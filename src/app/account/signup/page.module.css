@@ -132,4 +132,30 @@
   text-decoration: underline;
 }
 
+/* Responsive CSS */
+@media only screen and (max-width: 768px) {
+  .login {
+    padding: 1.5rem; /* Decrease padding for smaller screens */
+    margin: 1rem; /* Adjust margin for smaller screens */
+  }
+
+  .inputs-container {
+    display: flex; /* Change direction to column for smaller screens */
+    gap: 5px;
+  }
+
+  .input-container {
+    width: 100%; /* Set input container width to 100% for smaller screens */
+  }
+
+  .input input {
+    width: 100%; /* Set input width to 100% for smaller screens */
+  }
+
+  .social-icons {
+    flex-direction: column; /* Change direction to column for social icons for smaller screens */
+    gap: 0.5rem; /* Adjust gap between social icons for smaller screens */
+  }
+}
+
 /*# sourceMappingURL=page.module.css.map */

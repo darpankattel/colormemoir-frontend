@@ -50,7 +50,10 @@ const page = () => {
     <div className={styles["verify-container"]}>
       <div className={styles.verify}>
         <h2 className={styles.title}>Verify</h2>
+        <div className={styles.image}>
+
         <Image src={otplogo} alt="otplogo" width={200} height={200} />
+        </div>
         <div className={styles["verify-form-container"]}>
           <form onSubmit={handleVerify} className={styles["verify-form"]} >
             <label htmlFor="otp" className={styles.label}>

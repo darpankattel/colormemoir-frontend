@@ -59,3 +59,37 @@
     border-radius: 5px;
     padding: 0.5rem;
   }
+
+
+  /* Responsive CSS */
+@media only screen and (max-width: 768px) {
+    .verify {
+      padding: 1.5rem; /* Decrease padding for smaller 
+      screens */
+      height: 100%;
+      width: 100%;
+      margin: 1rem; /* Adjust margin for smaller screens */
+    }
+  
+    .verify-form {
+      flex-direction: column; /* Change direction to column for smaller screens */
+    }
+  
+    .verify-form-container {
+      width: 100%; /* Set container width to 100% for smaller screens */
+    }
+  
+    .input {
+      width: 100%; /* Set input width to 100% for smaller screens */
+    }
+    .image{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+  
+    .login-button {
+      width: 100%; /* Set button width to 100% for smaller screens */
+    }
+  }
+  

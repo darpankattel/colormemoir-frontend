@@ -78,3 +78,80 @@
     padding: 0.5rem;
     background-color: transparent;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    background-color: #ECF0F1;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Limit maximum width for larger screens */
+    margin: 2rem auto; /* Center the form horizontally */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    align-self: center;
+    text-decoration: none;
+    padding: 1rem 2rem; /* Increase padding for better button appearance */
+    background-color: #398378;
+    color: white;
+    border-radius: 20px;
+    transition: 0.4s ease;
+}
+
+.button:hover {
+    background-color: #306b5d; /* Darken button color on hover */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Increase gap between input fields */
+}
+
+.label {
+    font-family: "Nunito", sans-serif;
+    margin-bottom: 0.5rem;
+    color: #007bff; /* Adjust label color */
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    padding: 0.5rem;
+    background: white;
+}
+
+.input input {
+    border: none;
+    flex: 1; /* Allow input to grow within container */
+    padding: 0.5rem;
+    background-color: transparent;
+    outline: none; /* Remove outline on focus */
+}
+
+.warning {
+    color: rgb(205, 205, 205);
+    font-size: 14px; /* Decrease font size for warning text */
+    text-align: center; /* Center warning text */
+}

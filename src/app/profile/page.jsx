@@ -23,7 +23,11 @@ const columns = [
     title: "Id",
     dataIndex: "reference_id",
     key: "reference_id",
-    render: (id) => <Link href={`/colorize/${id}`} className={styles.link}>{id ? id : "--"}</Link>,
+    render: (id) => (
+      <Link href={`/colorize/${id}`} className={styles.link}>
+        {id ? id : "--"}
+      </Link>
+    ),
   },
   {
     title: "Name",
@@ -160,11 +164,12 @@ const Profile = () => {
 
         <div className={styles.progresscontainer}>
           <div className={styles.progress}>
-            <Flex gap="40" wrap="wrap">
+            <Flex gap="40" wrap="wrap" className={styles.progressbar}>
               <div className={styles.circle}>
                 <Progress
                   type="circle"
                   percent={imageCount.perPending}
+                  
                   // change icon
                   format={(percent) => (
                     <Image src={loadingImage} width={40} height={40} alt="" />
@@ -180,6 +185,7 @@ const Profile = () => {
                   type="circle"
                   percent={imageCount.perFailed}
                   status="exception"
+                
                 />
                 <p className={styles.progresstxt}>
                   Failed : {imageCount?.failedImage}
