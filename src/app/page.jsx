@@ -1,6 +1,5 @@
 "use client";
 
-import About from "@/components/About/page";
 import Hero from "@/components/Hero/Hero";
 import DemoShow from "@/components/demoshow/page";
 import Howmany from "@/components/howmany/page";
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero />
       <DemoShow />
       <Howmany />
-      {/* <About /> */}
     </>
   );
 }

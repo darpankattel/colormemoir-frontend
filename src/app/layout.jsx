@@ -1,5 +1,4 @@
 //it is parent of all pages so it is applied to all pages :)
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/Footer";
@@ -12,8 +11,8 @@ import ReactQueryProvider from '@/provider/react-query'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Color Memoir | Colorize your History",
-  description: "Colorize Nepal's History and Culture using our VGG19 CNN model.",
+  title: "Color Memoir | Colorizing Nepal's History",
+  description: "Colorize Nepal's History and Heritage using our VGG19 CNN model.",
   authors: [
     {
       name: 'Darpan Kattel',

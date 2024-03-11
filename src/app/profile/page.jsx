@@ -13,95 +13,98 @@ import { Flex, Input } from "antd";
 import Link from "next/link";
 // import image loading-image.gif
 import loadingImage from "../../../public/loading-image.gif";
-const { TextArea } = Input;
+import SpinningLoader from "@/components/loader/SpinningLoader";
 const onChange = (e) => {
   console.log("Change:", e.target.value);
 };
 
-const columns = [
-  {
-    title: "Id",
-    dataIndex: "reference_id",
-    key: "reference_id",
-    render: (id) => (
-      <Link href={`/colorize/${id}`} className={styles.link}>
-        {id ? id : "--"}
-      </Link>
-    ),
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "reference_id",
-    //   render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Input Image",
-    dataIndex: "input_image",
-    key: "reference_id",
-    render: (input_image) => (
-      <AntdImage width={100} height={100} src={`${MAIN_URL}${input_image}`} />
-    ),
-  },
-  {
-    title: "Output Image",
-    dataIndex: "output_image",
-    key: "reference_id",
-    render: (output_image) =>
-      output_image ? (
-        <AntdImage
-          width={100}
-          height={100}
-          src={`${MAIN_URL}${output_image}`}
-        />
-      ) : (
-        "--"
-      ),
-  },
-  {
-    title: "Loss / Accuracy",
-    dataIndex: "loss",
-    key: "reference_id",
-    render: (loss, record) => (
-      <span>
-        {loss ? `${Math.round(loss * 100 * 100) / 100}%` : "--"} /{" "}
-        {record?.accuracy
-          ? `${Math.round(record.accuracy * 100 * 100) / 100}%`
-          : "--"}
-      </span>
-    ),
-  },
-  {
-    title: "Created Date",
-    dataIndex: "created",
-    key: "reference_id",
-    render: (created) => <span>{getFormattedDateTime(created)}</span>,
-  },
-  {
-    title: "Status",
-    key: "reference_id",
-    dataIndex: "status",
-    render: (status) => (
-      <Tag
-        color={
-          status === "pending"
-            ? "yellow"
-            : status === "completed"
-            ? "green"
-            : "red"
-        }
-      >
-        {status.toUpperCase()}
-      </Tag>
-    ),
-  },
-];
 
 const Profile = () => {
   const { data: profileData, isFetching, error } = useGetProfile();
   const [user, setUser] = useState({});
   const [photoConversions, setPhotoConversions] = useState([]);
   const [imageCount, setImageCount] = useState({}); //imageCount
+  const [showLoader, setShowLoader] = useState(false);
+  const columns = [
+    {
+      title: "Id",
+      dataIndex: "reference_id",
+      key: "reference_id",
+      render: (id) => (
+        <span onClick={() => setShowLoader(true)}>
+          <Link href={`/colorize/${id}`} className={styles.link}>
+            {id ? id : "--"}
+          </Link>
+        </span>
+      ),
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "reference_id",
+      //   render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Input Image",
+      dataIndex: "input_image",
+      key: "reference_id",
+      render: (input_image) => (
+        <AntdImage width={100} height={100} src={`${MAIN_URL}${input_image}`} />
+      ),
+    },
+    {
+      title: "Output Image",
+      dataIndex: "output_image",
+      key: "reference_id",
+      render: (output_image) =>
+        output_image ? (
+          <AntdImage
+            width={100}
+            height={100}
+            src={`${MAIN_URL}${output_image}`}
+          />
+        ) : (
+          "--"
+        ),
+    },
+    {
+      title: "Loss / Accuracy",
+      dataIndex: "loss",
+      key: "reference_id",
+      render: (loss, record) => (
+        <span>
+          {loss ? `${Math.round(loss * 100 * 100) / 100}%` : "--"} /{" "}
+          {record?.accuracy
+            ? `${Math.round(record.accuracy * 100 * 100) / 100}%`
+            : "--"}
+        </span>
+      ),
+    },
+    {
+      title: "Created Date",
+      dataIndex: "created",
+      key: "reference_id",
+      render: (created) => <span>{getFormattedDateTime(created)}</span>,
+    },
+    {
+      title: "Status",
+      key: "reference_id",
+      dataIndex: "status",
+      render: (status) => (
+        <Tag
+          color={
+            status === "pending"
+              ? "yellow"
+              : status === "completed"
+              ? "green"
+              : "red"
+          }
+        >
+          {status.toUpperCase()}
+        </Tag>
+      ),
+    },
+  ];
 
   useEffect(() => {
     if (profileData) {
@@ -139,6 +142,8 @@ const Profile = () => {
   }, [profileData]);
   return (
     <div className={styles.mainContainer}>
+      { showLoader  &&
+        <SpinningLoader text="Loading..." /> }
       <div className={styles.profileContainer}>
         <div className={styles.leftProfile}>
           <div className={styles.imageContainer}>

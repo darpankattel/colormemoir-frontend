@@ -21,6 +21,8 @@
     color: black;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
@@ -31,4 +33,9 @@
 
 .loadingWrapper {
     color: #398378;
+}
+
+.loadingImage {
+    height: auto;
+    width: 4rem;
 }

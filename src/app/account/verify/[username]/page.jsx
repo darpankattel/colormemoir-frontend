@@ -49,7 +49,7 @@ const page = () => {
   return (
     <div className={styles["verify-container"]}>
       <div className={styles.verify}>
-        <h2 className={styles.title}>Verify</h2>
+        <h2 className={styles.title}>Verify OTP</h2>
         <div className={styles.image}>
 
         <Image src={otplogo} alt="otplogo" width={200} height={200} />

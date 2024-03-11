@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
 
@@ -12,6 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { RiImageAddLine } from "react-icons/ri";
 
 import { URL } from "@/data/URL";
+import { getError } from "@/utils/utils";
 
 const links = [
   {
@@ -24,16 +25,11 @@ const links = [
     id: 2,
     title: "About",
     url: "/about",
-  },
-  {
-    id: 3,
-    title: <Link href="/colorize" className={styles.colorizeLink}><RiImageAddLine /> Colorize</Link>,
-    url: "/colorize",
-  },
+  }
 ];
 
 const Navbar = () => {
-  const [userLoggedIn, setUserLoggedIn] = React.useState(localStorage.getItem("token") ? true : false);
+  const [userLoggedIn, setUserLoggedIn] = React.useState();
   const logoutMutate = useMutation({
     mutationKey: ['logout'],
     mutationFn: () => {
@@ -42,20 +38,21 @@ const Navbar = () => {
     },
     onSuccess: (data) => {
       console.log("logged out", data);
-      localStorage.setItem("token", null);
+      localStorage.removeItem("token");
       window.location.href = "/account/login";
     },
     onError: (error) => {
       console.log("error", error);
+      message.error(getError(error));
     }
   });
   const items = [
     {
-      label: <a href="/profile/">Profile</a>,
+      label: <Link href="/profile/">Profile</Link>,
       key: "0",
     },
     {
-      label: <a href="/settings/">Settings</a>,
+      label: <Link href="/settings/">Settings</Link>,
       key: "1",
     },
     {
@@ -74,6 +71,9 @@ const Navbar = () => {
       },
     },
   ];
+  useEffect(() => {
+    setUserLoggedIn(localStorage.getItem("token") ? true : false);
+  }, [localStorage.getItem("token")]);
   return (
     <div className={styles.container}>
       <Link className={styles.logo} href="/">
@@ -87,10 +87,18 @@ const Navbar = () => {
       </Link>
       <div className={styles.links}>
         {links.map((link) => (
-          <Link key={link.id} href={link.url} className={styles.link}>
+          <Link key={link.id} href={link.url} className={link?.className}>
             {link.title}
           </Link>
         ))}
+        {userLoggedIn && 
+          <Link
+            className={styles.colorizeLink}
+            href="/colorize"
+          >
+            <RiImageAddLine /> Colorize
+          </Link>
+        }
         {!userLoggedIn ? (
           <Link
             className={styles.login}

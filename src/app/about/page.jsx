@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+import React, {useState} from "react";
 import styles from "./about.module.css";
 import Image from "next/image";
 import darpan from "../../../public/developer/20240218_123506.jpg";
 import bishnu from "../../../public/developer/420576288_965497768418555_8451520561355716310_n.jpg";
 import vivek from "../../../public/developer/376552566_1494094581358479_2711768330671493501_n.jpg";
+import ShowQr from "./qr.jsx";
+
 const about = () => {
+  const [showQR, setShowQR] = useState(false);
+  const handleShowQR = () => {
+    setShowQR(!showQR);
+  }
   return (
     <div className={styles.display}>
+      {showQR && <ShowQr handleShowQR={handleShowQR} />}
       <div className={styles.container}>
         <div className={styles.desc}>
           <h5 className={styles.note}>How it Started</h5>
@@ -17,7 +25,7 @@ const about = () => {
           <p className={styles.text}>
           We are a team of engineering students from IOE Pulchowk Campus, Nepal, driven by a shared passion for innovation and technology. The inception of this website stemmed from a nostalgic moment when one of our team members recalled manually coloring his great-grandparent's image in Photoshop. Inspired by this experience, the idea was pitched during a discussion on minor project titles and was enthusiastically accepted. From that moment, we embarked on a journey to develop a user-friendly platform for image colorization, blending modern technology with personal sentiment.
           </p>
-          <button className={styles.donateButton}>Donate</button>
+          <button className={styles.donateButton} onClick={handleShowQR}>Donate</button>
         </div>
         <div className={styles.productbox}>
           <div className={styles.product}>

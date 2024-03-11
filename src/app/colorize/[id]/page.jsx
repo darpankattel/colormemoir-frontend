@@ -10,14 +10,6 @@ import { Flex, Progress } from "antd";
 const page = () => {
   const { id } = useParams();
   console.log(id);
-  //   const conversion = {
-  //     "name": "khali image",
-  //     "input_image": "/media/input_images/27_PCP1kfX.png",
-  //     "reference_id": "ZiDgSiG2dQ",
-  //     "output_image": "/media/output_images/ZiDgSiG2dQ.jpg",
-  //     "created": "2024-02-25T19:02:36.100125Z",
-  //     "status": "completed"
-  // };
   const { data: conversion, isLoading, isSuccess } = useGetResult({ id });
   const handleDownload = () => {
     const imageUrl = `${MAIN_URL}${conversion?.output_image}`; // Replace this with the actual image URL

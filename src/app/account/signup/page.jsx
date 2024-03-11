@@ -3,11 +3,12 @@ import React from "react";
 import Link from "next/link";
 import { CiUser, CiLock } from "react-icons/ci";
 import styles from "./page.module.css";
-import { Button, message } from "antd";
+import { message } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
 import { getError } from "@/utils/utils";
+import SpinningLoader from "@/components/loader/SpinningLoader";
 
 function Signup() {
   const [form, setForm] = React.useState({
@@ -25,6 +26,7 @@ function Signup() {
       return response.data;
     },
     onSuccess: (data) => {
+      setShowLoader(false);
       console.log("data", data);
       if (data?.success) {
         message.success(data?.message);
@@ -34,6 +36,7 @@ function Signup() {
       }
     },
     onError: (error) => {
+      setShowLoader(false);
       console.log("error", error);
       message.error(getError(error));
     },
@@ -45,6 +48,7 @@ function Signup() {
       message.error("All fields are required");
     }
     else if (form.confirm_password === form.password) {
+      setShowLoader(true);
       signupMutate.mutateAsync();
       console.log("form", form);
     } else {
@@ -53,6 +57,8 @@ function Signup() {
   };
   return (
     <div className={styles["login-container"]}>
+      { showLoader  &&
+      <SpinningLoader text="Signing Up..." /> }
       <div className={styles.login}>
         <h1 className={styles.title}>Sign up</h1>
         <p className={styles.smalltext}>It’s quick and easy.</p>

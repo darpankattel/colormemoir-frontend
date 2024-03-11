@@ -12,18 +12,17 @@ const Hero = () => {
       <Image src={heritage} alt="homepage photo" className={styles.img} />
       <div className={styles.item}>
         <h1 className={styles.title}>
-          Better to turn your past into colorful life
+        Transforming History into Vibrant Memories
         </h1>
         <p className={styles.desc}>
-          Upload your photo, pick your unique filter, and watch your moment
-          transform with vibrant, lifelike colors in seconds.
+        ColorMemoir turns your black and white memories of Nepal into vibrant, lifelike experiences. Upload your photos and witness the magic of colorization in seconds. Rediscover Nepal's rich heritage with a touch of color.
         </p>
         <div className={styles.rating}>
           <Image src={rate} alt="rate star" className={styles.star} />
           <h5 className={styles.ratingdetail}>2.8M+ Users | Rated 4.9 Stars</h5>
         </div>
         <div className={styles.button}>
-        <Button url="/colorize" text="Create Colored Photo"  />
+        <Button icon={"RiImageAddLine"} url="/colorize" text="Create Colored Photo"  />
         </div>
       </div>
     </div>

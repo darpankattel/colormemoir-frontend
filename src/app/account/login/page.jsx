@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useEffect, useContext, useState} from "react";
 import Link from "next/link";
 import { CiUser, CiLock } from "react-icons/ci";
 import styles from "./page.module.css";
@@ -7,12 +7,15 @@ import { Button, message } from 'antd';
 import { useMutation } from "@tanstack/react-query";
 import myaxios from "@/utils/myaxios";
 import { URL } from "@/data/URL";
+import { UserContext } from '../../../context/UserContext';
+import SpinningLoader from "@/components/loader/SpinningLoader";
 
 function Login() {
   const [form, setForm] = React.useState({
     username: "",
     password: "",
   });
+  const [showLoader, setShowLoader] = useState(false);
   const loginMutate = useMutation({
     mutationKey: ['login'],
     mutationFn: async () => {
@@ -20,6 +23,7 @@ function Login() {
       return response.data;
     },
     onSuccess: (data) => {
+      setShowLoader(false);
       console.log("data", data);
       if (data?.data?.token) {
         localStorage.setItem("token", data.data.token);
@@ -27,6 +31,7 @@ function Login() {
       }
     },
     onError: (error) => {
+      setShowLoader(false);
       console.log("error", error);
     }
   });
@@ -34,11 +39,14 @@ function Login() {
     e.preventDefault();
     console.log({form});
     if (form.username && form.password) {
+      setShowLoader(true);
       loginMutate.mutateAsync();
     }
   }
   return (
     <div className={styles["login-container"]}>
+      { showLoader  &&
+      <SpinningLoader text="Logging In..." /> }
       <div className={styles.login}>
         <h1 className={styles.title}>Login</h1>
         <form className={styles["login-form"]} onSubmit={handleLogin}>

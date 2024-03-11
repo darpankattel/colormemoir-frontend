@@ -16,14 +16,15 @@ const Howmany = () => {
           className={styles.img}
         />
         <div className={styles.imgText}>
-          <h1 className={styles.title}>
+          <h2 className={styles.title}>
             {" "}
-            +1 Million Photos Already Colorized{" "}
-          </h1>
+            +1 Thousand Photos Already Colorized
+          </h2>
           <Button
             text="Create Colored Photo"
             url="/colorize"
             className={styles.button}
+            icon={"RiImageAddLine"}
           />
         </div>
       </div>
